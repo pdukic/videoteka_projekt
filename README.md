@@ -1,5 +1,5 @@
 # videoteka_projekt
-Aplikacija za digitalnu videoteku sa clanovima
+Aplikacija za digitalnu videoteku 
 Zbog potrebe za digitalizacijom usluge videoteka, izrađena je aplikacija za korisničku videokolekciju.
 Korisnik su omogućene sljedeće funkcije:
 1. Registracija u aplikaciji
@@ -8,4 +8,5 @@ Korisnik su omogućene sljedeće funkcije:
 4. Ispis svih zapisa iz baze podataka
 5. Izmjena postojećeg zapisa
 6. Brisanje zapisa iz baze
+
 
