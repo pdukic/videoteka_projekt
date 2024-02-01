@@ -1,7 +1,6 @@
-package videoteka;
+package videoteka1;
 
 import java.awt.EventQueue;
-
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -96,7 +95,7 @@ public class IspisClan {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://student.veleri.hr/pdukic?serverTimezone=UTC","pdukic","11");
-					String upit="SELECT * FROM clan_videoteka";
+					String upit="SELECT * FROM registracija_videoteka";
 					Statement stmt=con.createStatement();
 					ResultSet rs=stmt.executeQuery(upit);
 

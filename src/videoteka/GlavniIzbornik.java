@@ -1,19 +1,15 @@
-package videoteka;
+package videoteka1;
 
 import java.awt.EventQueue;
-
-
-
-import videoteka.*;
+import videoteka1.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.*;
-
-import videoteka.Login;
-import videoteka.Registracija;
+import videoteka1.Login;
+import videoteka1.Registracija;
 
 
 public class GlavniIzbornik {

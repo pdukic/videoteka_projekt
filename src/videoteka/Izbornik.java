@@ -1,9 +1,6 @@
-package videoteka;
+package videoteka1;
 
 import java.awt.EventQueue;
-
-
-
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

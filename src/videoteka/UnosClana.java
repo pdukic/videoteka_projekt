@@ -1,7 +1,6 @@
-package videoteka;
+package videoteka1;
 
 import java.awt.EventQueue;
-
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
@@ -14,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JPasswordField;
 
 
 
@@ -24,6 +24,8 @@ public class UnosClana {
 	private JTextField ime;
 	private JTextField prezime;
 	private JTextField brojMob;
+	private JPasswordField lozinka;
+	private JPasswordField ponLozinka;
 
 	/**
 	 * Launch the application.
@@ -53,7 +55,7 @@ public class UnosClana {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 580, 438);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -92,19 +94,24 @@ public class UnosClana {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String imes, prezimes, brojMobs;
+				String imes, prezimes, brojMobs, lozinkas, ponLozinkas;
 				imes = ime.getText();
 				prezimes = prezime.getText();
 				brojMobs = brojMob.getText();
+				lozinkas=new String (lozinka.getPassword());
+				ponLozinkas=new String(ponLozinka.getPassword());				
+				
+				if(lozinkas.equals(ponLozinkas)) {			
 				
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://student.veleri.hr/pdukic?serverTimezone=UTC","pdukic","11");
-					String insert="INSERT INTO clan_videoteka (ime,prezime,brojMob) VALUES (?,?,?)"; 
+					String insert="INSERT INTO registracija_videoteka (ime,prezime,brojMob, lozinka) VALUES (?,?,?,?)"; 
 					PreparedStatement ps=con.prepareStatement(insert);
 					ps.setString(1, imes);
 					ps.setString(2,prezimes);
 					ps.setString(3, brojMobs);	
+					ps.setString(4, lozinkas);
 					
 					int ubacenoRedaka=ps.executeUpdate();
 					
@@ -121,12 +128,16 @@ public class UnosClana {
 					JOptionPane.showMessageDialog(null, e1);
 					e1.printStackTrace();
 				}
-			
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Lozinke nisu jednake");
+				}
 				
 				
 			}
+				
 		});
-		btnNewButton.setBounds(150, 167, 124, 21);
+		btnNewButton.setBounds(150, 237, 124, 21);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Izbornik");
@@ -136,8 +147,24 @@ public class UnosClana {
 				gi.showWindow();
 			}
 		});
-		btnNewButton_1.setBounds(150, 209, 124, 21);
+		btnNewButton_1.setBounds(150, 268, 124, 21);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("Lozinka");
+		lblNewLabel_4.setBounds(34, 163, 65, 13);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Ponovljena lozinka");
+		lblNewLabel_5.setBounds(34, 203, 101, 13);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		lozinka = new JPasswordField();
+		lozinka.setBounds(150, 160, 96, 19);
+		frame.getContentPane().add(lozinka);
+		
+		ponLozinka = new JPasswordField();
+		ponLozinka.setBounds(150, 194, 96, 19);
+		frame.getContentPane().add(ponLozinka);
 	}
 	public void showWindow(){		
 		frame.setVisible(true);

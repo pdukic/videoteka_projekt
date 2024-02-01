@@ -1,4 +1,4 @@
-package videoteka;
+package videoteka1;
 
 
 import java.sql.*;
@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 
 public class IzmjenaClan{
@@ -29,6 +30,8 @@ public class IzmjenaClan{
 	private JTextField ime;
 	private JTextField prezime;
 	private JTextField brojMob;
+	private JPasswordField lozinka;
+	private JPasswordField ponLozinka;
 
 	/**
 	 * Launch the application.
@@ -58,7 +61,7 @@ public class IzmjenaClan{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 556, 327);
+		frame.setBounds(100, 100, 685, 441);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -103,7 +106,7 @@ public class IzmjenaClan{
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://student.veleri.hr/pdukic?serverTimezone=UTC","pdukic","11");
-					String upit="SELECT * FROM clan_videoteka";
+					String upit="SELECT * FROM registracija_videoteka";
 					Statement stmt=con.createStatement();
 					ResultSet rs=stmt.executeQuery(upit);
 
@@ -171,11 +174,15 @@ public class IzmjenaClan{
 		JButton btnNewButton_2 = new JButton("Azuriraj podatke");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String lozinkas, ponLozinkas;
+				lozinkas=new String (lozinka.getPassword());
+				ponLozinkas=new String(ponLozinka.getPassword());	
 				
+				if(lozinkas.equals(ponLozinkas)) {		
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://student.veleri.hr/pdukic?serverTimezone=UTC","pdukic","11");
-					String update="UPDATE clan_videoteka SET ime='"+ime.getText()+"' , prezime='"+prezime.getText()+"' , brojMob='"+brojMob.getText()+"' WHERE clan_id='"+clan_id.getText()+"' "; 
+					String update="UPDATE registracija_videoteka SET ime='"+ime.getText()+"' , prezime='"+prezime.getText()+"' , brojMob='"+brojMob.getText()+"', lozinka='"+lozinkas+"' WHERE clan_id='"+clan_id.getText()+"' "; 
 					PreparedStatement ps=con.prepareStatement(update);
 				
 					
@@ -188,16 +195,37 @@ public class IzmjenaClan{
 						JOptionPane.showMessageDialog(null, "Greska u azuriranju podataka");
 					}
 				}
+		
+				
 					
 				catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1);
 					e1.printStackTrace();
 				}
-				
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Lozinke nisu jednake");
+				}
 			}
 		});
-		btnNewButton_2.setBounds(20, 259, 131, 21);
+		btnNewButton_2.setBounds(20, 351, 131, 21);
 		frame.getContentPane().add(btnNewButton_2);
+		
+		JLabel lblNewLabel_6 = new JLabel("Lozinka");
+		lblNewLabel_6.setBounds(20, 245, 96, 13);
+		frame.getContentPane().add(lblNewLabel_6);
+		
+		lozinka = new JPasswordField();
+		lozinka.setBounds(20, 268, 96, 19);
+		frame.getContentPane().add(lozinka);
+		
+		JLabel lblNewLabel_7 = new JLabel("Ponovljena lozinka");
+		lblNewLabel_7.setBounds(20, 297, 96, 13);
+		frame.getContentPane().add(lblNewLabel_7);
+		
+		ponLozinka = new JPasswordField();
+		ponLozinka.setBounds(20, 320, 96, 19);
+		frame.getContentPane().add(ponLozinka);
 		
 	
 	}

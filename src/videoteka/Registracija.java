@@ -1,4 +1,4 @@
-package videoteka;
+package videoteka1;
 
 import java.sql.*;
 import java.awt.EventQueue;

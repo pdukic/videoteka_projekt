@@ -1,7 +1,6 @@
-package videoteka;
+package videoteka1;
 
 import java.awt.EventQueue;
-
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -99,7 +98,7 @@ public class ObrisiClan {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://student.veleri.hr/pdukic?serverTimezone=UTC","pdukic","11");
-					String upit="SELECT * FROM clan_videoteka";
+					String upit="SELECT * FROM registracija_videoteka";
 					Statement stmt=con.createStatement();
 					ResultSet rs=stmt.executeQuery(upit);
 
@@ -141,7 +140,7 @@ public class ObrisiClan {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://student.veleri.hr/pdukic?serverTimezone=UTC","pdukic","11");
 					
-					String upit="DELETE FROM clan_videoteka WHERE clan_id='"+clan_id.getText()+"'  ";
+					String upit="DELETE FROM registracija_videoteka WHERE clan_id='"+clan_id.getText()+"'  ";
 					
 					PreparedStatement ps=con.prepareStatement(upit);
 					
@@ -149,11 +148,11 @@ public class ObrisiClan {
 					
 					if (deleteRedaka==1)
 					{
-						System.out.println("clan je obrisan");
+						JOptionPane.showMessageDialog(null, "Clan je obrisan");
 					}
 					else
 					{
-						System.out.println("Doslo je do greske");
+						JOptionPane.showMessageDialog(null, "Doslo je do greske");
 					}
 				}
 				catch(Exception e1)

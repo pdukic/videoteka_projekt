@@ -1,4 +1,4 @@
-package videoteka;
+package videoteka1;
 
 import java.awt.EventQueue;
 
@@ -150,11 +150,11 @@ public class ObrisiFilm {
 					
 					if (deleteRedaka==1)
 					{
-						System.out.println("Film je obrisan");
+						JOptionPane.showMessageDialog(null, "Film je uspjesno obrisan");
 					}
 					else
 					{
-						System.out.println("Doslo je do greske");
+						JOptionPane.showMessageDialog(null, "Doslo je do greske");
 					}
 				}
 				catch(Exception e1)
